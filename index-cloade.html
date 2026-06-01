@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Casino - Cloade Design System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-light-gray: #F5F5F5;
+            --color-medium-gray: #E0E0E0;
+            --color-border-light: #D9D9D9;
+            --color-border-medium: #999999;
+            --color-dark-gray: #666666;
+            --color-link-blue: #0066CC;
+            --color-hover-blue: #0052A3;
+            --color-active-blue: #003D7A;
+            --color-success-green: #28A745;
+            --color-warning-amber: #FFC107;
+            --color-error-red: #DC3545;
+
+            /* Spacing */
+            --spacing-2: 2px;
+            --spacing-4: 4px;
+            --spacing-8: 8px;
+            --spacing-12: 12px;
+            --spacing-16: 16px;
+            --spacing-20: 20px;
+            --spacing-24: 24px;
+            --spacing-32: 32px;
+            --spacing-40: 40px;
+            --spacing-48: 48px;
+
+            /* Typography */
+            --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            background-color: var(--color-white);
+            color: var(--color-black);
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--color-white);
+            border-bottom: 1px solid var(--color-border-light);
+            padding: var(--spacing-16) var(--spacing-24);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 56px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-black);
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: var(--spacing-12);
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--color-black);
+            font-size: 16px;
+            font-weight: 500;
+            padding: var(--spacing-8) var(--spacing-12);
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 200ms ease, background-color 200ms ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--color-link-blue);
+            background-color: rgba(0, 102, 204, 0.08);
+        }
+
+        .nav-link.active {
+            color: var(--color-link-blue);
+            border-bottom: 2px solid var(--color-link-blue);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-32) var(--spacing-24);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-24) var(--spacing-16);
+            }
+        }
+
+        /* Header Section */
+        .header {
+            margin-bottom: var(--spacing-40);
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-8);
+            line-height: 40px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--color-dark-gray);
+            line-height: 24px;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            border-bottom: 1px solid var(--color-border-light);
+            margin-bottom: var(--spacing-32);
+            display: flex;
+        }
+
+        .tab-button {
+            background: transparent;
+            color: var(--color-dark-gray);
+            font-size: 16px;
+            font-weight: 500;
+            padding: var(--spacing-16) var(--spacing-20);
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            transition: color 200ms ease, border-color 200ms ease;
+        }
+
+        .tab-button:hover {
+            color: var(--color-black);
+            border-bottom: 2px solid var(--color-border-medium);
+        }
+
+        .tab-button.active {
+            color: var(--color-black);
+            border-bottom: 2px solid var(--color-link-blue);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            padding: var(--spacing-24);
+            margin-bottom: var(--spacing-16);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 200ms ease;
+        }
+
+        .card:hover {
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-12);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-16);
+            margin-bottom: var(--spacing-32);
+        }
+
+        .stat-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-left: 4px solid var(--color-link-blue);
+            border-radius: 8px;
+            padding: var(--spacing-24);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-black);
+            font-family: var(--font-family-mono);
+            letter-spacing: -0.5px;
+        }
+
+        /* Game Board */
+        .game-board {
+            background-color: var(--color-light-gray);
+            border-radius: 8px;
+            padding: var(--spacing-32);
+            margin-bottom: var(--spacing-32);
+        }
+
+        .reels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: var(--spacing-24);
+            margin-bottom: var(--spacing-32);
+            justify-content: center;
+        }
+
+        .reel {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+            font-family: var(--font-family-mono);
+            transition: transform 0.05s linear;
+        }
+
+        .reel.spinning {
+            animation: spin 0.05s linear;
+        }
+
+        @keyframes spin {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+        }
+
+        /* Controls */
+        .controls {
+            background-color: var(--color-light-gray);
+            border-radius: 8px;
+            padding: var(--spacing-24);
+            margin-bottom: var(--spacing-24);
+        }
+
+        .control-group {
+            margin-bottom: var(--spacing-24);
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-12);
+            display: block;
+        }
+
+        .bet-input-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-12);
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-white);
+            color: var(--color-link-blue);
+            border: 1px solid var(--color-link-blue);
+            padding: var(--spacing-12) var(--spacing-24);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F5F5F5;
+            border-color: var(--color-hover-blue);
+            color: var(--color-hover-blue);
+        }
+
+        .btn-secondary:active {
+            background-color: var(--color-medium-gray);
+        }
+
+        .bet-display {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-black);
+            font-family: var(--font-family-mono);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: var(--spacing-16);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--color-link-blue);
+            color: var(--color-white);
+            border: 1px solid var(--color-link-blue);
+            padding: var(--spacing-12) var(--spacing-24);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-hover-blue);
+            border-color: var(--color-hover-blue);
+        }
+
+        .btn-primary:active {
+            background-color: var(--color-active-blue);
+        }
+
+        .btn-primary:disabled {
+            background-color: var(--color-medium-gray);
+            border-color: var(--color-medium-gray);
+            cursor: not-allowed;
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--color-link-blue);
+            border: 1px solid transparent;
+            padding: var(--spacing-12) var(--spacing-24);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(0, 102, 204, 0.08);
+            border-color: var(--color-link-blue);
+        }
+
+        /* Message Area */
+        .message {
+            background-color: var(--color-light-gray);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            padding: var(--spacing-16);
+            margin-bottom: var(--spacing-24);
+            font-size: 14px;
+            color: var(--color-dark-gray);
+            text-align: center;
+        }
+
+        .message.success {
+            background-color: #E8F5E9;
+            border-color: var(--color-success-green);
+            color: var(--color-black);
+        }
+
+        .message.warning {
+            background-color: #FFF8E1;
+            border-color: var(--color-warning-amber);
+            color: var(--color-black);
+        }
+
+        .message.error {
+            background-color: #FFEBEE;
+            border-color: var(--color-error-red);
+            color: var(--color-black);
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-16);
+            background-color: var(--color-light-gray);
+            border-radius: 8px;
+            padding: var(--spacing-24);
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .detail-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-black);
+            font-family: var(--font-family-mono);
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--spacing-16);
+        }
+
+        .achievement-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            padding: var(--spacing-16);
+            text-align: center;
+            transition: all 200ms ease;
+        }
+
+        .achievement-card:hover {
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .achievement-icon {
+            font-size: 32px;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .achievement-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .achievement-status {
+            font-size: 11px;
+            color: var(--color-dark-gray);
+        }
+
+        /* Leaderboard */
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-16);
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-12);
+        }
+
+        .leaderboard-rank {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-link-blue);
+            min-width: 40px;
+        }
+
+        .leaderboard-name {
+            flex: 1;
+            margin-left: var(--spacing-16);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .leaderboard-score {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-dark-gray);
+            font-family: var(--font-family-mono);
+        }
+
+        /* Settings */
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-16);
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border-light);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-12);
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-black);
+        }
+
+        .toggle {
+            width: 48px;
+            height: 24px;
+            background-color: var(--color-medium-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 200ms ease;
+            position: relative;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 200ms ease;
+        }
+
+        .toggle.on {
+            background-color: var(--color-link-blue);
+        }
+
+        .toggle.on::after {
+            left: 26px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-24) var(--spacing-16);
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .reel {
+                font-size: 36px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">Premium Casino</div>
+        <ul class="navbar-nav">
+            <li><a class="nav-link active" data-tab="play">Play</a></li>
+            <li><a class="nav-link" data-tab="achievements">Achievements</a></li>
+            <li><a class="nav-link" data-tab="leaderboard">Leaderboard</a></li>
+            <li><a class="nav-link" data-tab="settings">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="page-title">Slot Machine Game</h1>
+            <p class="page-subtitle">Test your luck with our premium slot machine experience</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Balance</div>
+                <div class="stat-value" id="balanceValue">1000</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Gems</div>
+                <div class="stat-value" id="gemsValue">100</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Jackpot</div>
+                <div class="stat-value" id="jackpotValue">5000</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Level</div>
+                <div class="stat-value" id="levelValue">1</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="play">Play Classic</button>
+            <button class="tab-button" data-tab="mega">Mega 5</button>
+            <button class="tab-button" data-tab="achievements">Achievements</button>
+            <button class="tab-button" data-tab="leaderboard">Leaderboard</button>
+            <button class="tab-button" data-tab="settings">Settings</button>
+        </div>
+
+        <!-- TAB: Play Classic -->
+        <div id="play" class="tab-content active">
+            <!-- Game Board -->
+            <div class="game-board">
+                <div class="reels" id="reelsContainer">
+                    <div class="reel"><span id="reel1">🍒</span></div>
+                    <div class="reel"><span id="reel2">🍒</span></div>
+                    <div class="reel"><span id="reel3">🍒</span></div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <div class="control-group">
+                        <label class="control-label">Bet Amount</label>
+                        <div class="bet-input-group">
+                            <button class="btn-secondary" id="decrBet">−</button>
+                            <div class="bet-display" id="betAmount">10</div>
+                            <button class="btn-secondary" id="incrBet">+</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="margin-top: var(--spacing-24);">
+                        <div class="actions" style="margin-bottom: 0;">
+                            <button class="btn-secondary" id="maxBetBtn" style="flex: 0.5;">Max Bet</button>
+                            <button class="btn-secondary" id="allInBtn" style="flex: 0.5;">All In</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="message" id="gameMessage">Set your bet and spin to play</div>
+
+                <!-- Action Buttons -->
+                <div class="actions">
+                    <button class="btn-primary" id="spinBtn">Spin</button>
+                    <button class="btn-ghost" id="resetGameBtn">Reset Game</button>
+                </div>
+            </div>
+
+            <!-- Game Stats -->
+            <div class="card">
+                <h3 class="card-title">Game Statistics</h3>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Total Spins</div>
+                        <div class="detail-value" id="spinCount">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Wins</div>
+                        <div class="detail-value" id="winCount">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Win Streak</div>
+                        <div class="detail-value" id="winStreak">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Total Winnings</div>
+                        <div class="detail-value" id="totalWins">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Mega 5 -->
+        <div id="mega" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">Mega 5 Mode</h3>
+                <div class="game-board">
+                    <div class="reels" id="reelsContainerMega" style="grid-template-columns: repeat(5, minmax(80px, 1fr));">
+                        <div class="reel"><span id="reel-mega-1">🍒</span></div>
+                        <div class="reel"><span id="reel-mega-2">🍒</span></div>
+                        <div class="reel"><span id="reel-mega-3">🍒</span></div>
+                        <div class="reel"><span id="reel-mega-4">🍒</span></div>
+                        <div class="reel"><span id="reel-mega-5">🍒</span></div>
+                    </div>
+
+                    <div class="controls">
+                        <div class="control-group">
+                            <label class="control-label">Bet Amount (2x)</label>
+                            <div class="bet-input-group">
+                                <button class="btn-secondary" id="decrBetMega">−</button>
+                                <div class="bet-display" id="betAmountMega">20</div>
+                                <button class="btn-secondary" id="incrBetMega">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message" id="gameMessageMega">Mega mode offers higher stakes and bigger rewards</div>
+
+                    <div class="actions">
+                        <button class="btn-primary" id="spinBtnMega">Spin Mega</button>
+                        <button class="btn-ghost" id="resetGameBtnMega">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Achievements -->
+        <div id="achievements" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">Your Achievements</h3>
+                <div class="achievements-grid" id="achievementsContainer">
+                    <!-- Dynamically loaded -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Leaderboard -->
+        <div id="leaderboard" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">Top Players</h3>
+                <div id="leaderboardContainer">
+                    <!-- Dynamically loaded -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Settings -->
+        <div id="settings" class="tab-content">
+            <div class="card">
+                <h3 class="card-title">Game Settings</h3>
+                <div id="settingsContainer">
+                    <div class="setting-item">
+                        <label class="setting-label">Sound Effects</label>
+                        <button class="toggle on" id="soundToggle"></button>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">Visual Effects</label>
+                        <button class="toggle on" id="effectsToggle"></button>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">Dark Mode</label>
+                        <button class="toggle" id="themeToggle"></button>
+                    </div>
+                </div>
+                <div style="margin-top: var(--spacing-24);">
+                    <button class="btn-secondary" id="resetStatsBtn" style="width: 100%;">Reset All Statistics</button>
+                </div>
+                <div style="margin-top: var(--spacing-12);">
+                    <button class="btn-secondary" id="clearCacheBtn" style="width: 100%;">Clear Cache</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game-cloade.js"></script>
+</body>
+</html>
